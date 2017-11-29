@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-11-26 01:09:52
+Date: 2017-11-29 13:58:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -25,7 +25,20 @@ CREATE TABLE `activity` (
   `activity_content` text NOT NULL,
   `activity_status` tinyint(4) NOT NULL COMMENT '1-未开始\r\n2-进行中\r\n3-已结束',
   PRIMARY KEY (`activity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=187 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=189 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for activity_image
+-- ----------------------------
+DROP TABLE IF EXISTS `activity_image`;
+CREATE TABLE `activity_image` (
+  `activity_image_id` int(11) NOT NULL AUTO_INCREMENT,
+  `activity_id` int(11) NOT NULL,
+  `activity_image_path` varchar(50) NOT NULL,
+  PRIMARY KEY (`activity_image_id`),
+  KEY `activity_id` (`activity_id`),
+  CONSTRAINT `activity_image_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`activity_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for admin
@@ -71,7 +84,8 @@ DROP TABLE IF EXISTS `online`;
 CREATE TABLE `online` (
   `online_id` varchar(10) NOT NULL,
   `online_email` varchar(50) NOT NULL,
-  PRIMARY KEY (`online_id`)
+  PRIMARY KEY (`online_id`),
+  UNIQUE KEY `online_email` (`online_email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -116,17 +130,4 @@ CREATE TABLE `work` (
   `work_pdfpath` varchar(50) NOT NULL,
   `work_stock` int(10) unsigned NOT NULL,
   PRIMARY KEY (`work_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
-
--- ----------------------------
--- Table structure for work_image
--- ----------------------------
-DROP TABLE IF EXISTS `work_image`;
-CREATE TABLE `work_image` (
-  `work_image_id` int(11) NOT NULL AUTO_INCREMENT,
-  `work_id` int(11) NOT NULL,
-  `work_image_path` varchar(50) NOT NULL,
-  PRIMARY KEY (`work_image_id`),
-  KEY `work_id` (`work_id`),
-  CONSTRAINT `work_image_ibfk_1` FOREIGN KEY (`work_id`) REFERENCES `work` (`work_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
