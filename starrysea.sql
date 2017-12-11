@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-07 16:41:56
+Date: 2017-12-11 09:48:51
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,6 +24,8 @@ CREATE TABLE `activity` (
   `activity_name` varchar(30) NOT NULL,
   `activity_content` text NOT NULL,
   `activity_status` tinyint(4) NOT NULL COMMENT '1-未开始\r\n2-进行中\r\n3-已结束',
+  `activity_cover` varchar(50) NOT NULL,
+  `activity_summary` varchar(50) NOT NULL,
   PRIMARY KEY (`activity_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=438 DEFAULT CHARSET=utf8;
 
@@ -76,6 +78,21 @@ CREATE TABLE `city` (
   KEY `province_id` (`province_id`) USING BTREE,
   CONSTRAINT `city_ibfk_1` FOREIGN KEY (`province_id`) REFERENCES `province` (`province_id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Table structure for funding
+-- ----------------------------
+DROP TABLE IF EXISTS `funding`;
+CREATE TABLE `funding` (
+  `funding_id` int(11) NOT NULL AUTO_INCREMENT,
+  `activity_id` int(11) NOT NULL,
+  `funding_name` varchar(20) NOT NULL,
+  `funding_money` decimal(7,2) NOT NULL,
+  `funding_message` varchar(50) NOT NULL,
+  PRIMARY KEY (`funding_id`),
+  KEY `activity_id` (`activity_id`) USING BTREE,
+  CONSTRAINT `funding_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`activity_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for online
