@@ -2,11 +2,12 @@
 1、安装Java8环境、Gradle、STS(Spring Tool Suite)
 2、在STS中Help-->Eclipse Marketplace-->搜索“Gradle IDE Pack”并安装该插件
 3、导出starrysea仓库到STS中
-4、修改starrysea仓库中top.starrysea.common.Common类的FILE_ROOT变量,修改为部署的服务器上nginx的文件夹根目录
-5、右键starrysea项目-->Gradle(STS)-->Task Quick Launcher-->输入build,回车即开始构建项目
-6、构建完毕后,可以在starrysea/build/libs文件夹下发现starrysea-x.x.x.jar
-7、将starrysea-x.x.x.jar上传到云服务器,使用“nohup java -jar starrysea-x.x.x.jar > log.txt”命令启动后端服务器(jetty),启动的日志会记录在jar包同级目录的log.txt中
-8、导出ss_static仓库到STS中
-9、将ss_static仓库中的css、html、img、js、pdf文件夹复制到云服务器的nginx的文件夹根目录中,nginx.conf覆盖到nginx的conf文件夹下
-10、启动nginx
-11、访问域名,正常情况下可以正常运行
+4、右键starrysea项目-->Gradle(STS)-->Refresh All后开始下载所需要的jar包到本地
+5、修改starrysea仓库中top.starrysea.common.Common类的FILE_ROOT变量,修改为部署的服务器上nginx的文件夹根目录
+6、右键starrysea项目-->Gradle(STS)-->Task Quick Launcher-->输入build,回车即开始构建项目
+7、构建完毕后,可以在starrysea/build/libs文件夹下发现starrysea-x.x.x.jar
+8、将starrysea-x.x.x.jar上传到云服务器,使用“nohup java -jar starrysea-x.x.x.jar > log.txt”命令启动后端服务器(jetty),启动的日志会记录在jar包同级目录的log.txt中
+9、导出ss_static仓库到STS中
+10、将ss_static仓库中的css、html、img、js、pdf文件夹复制到云服务器的nginx的文件夹根目录中,nginx.conf覆盖到nginx的conf文件夹下
+11、启动nginx
+12、访问域名,正常情况下可以正常运行
