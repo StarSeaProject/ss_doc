@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50719
 File Encoding         : 65001
 
-Date: 2017-12-11 09:48:51
+Date: 2017-12-13 09:56:34
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,8 +26,9 @@ CREATE TABLE `activity` (
   `activity_status` tinyint(4) NOT NULL COMMENT '1-未开始\r\n2-进行中\r\n3-已结束',
   `activity_cover` varchar(50) NOT NULL,
   `activity_summary` varchar(50) NOT NULL,
+  `activity_endtime` date DEFAULT NULL,
   PRIMARY KEY (`activity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=438 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=440 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for activity_image
@@ -92,7 +93,7 @@ CREATE TABLE `funding` (
   PRIMARY KEY (`funding_id`),
   KEY `activity_id` (`activity_id`) USING BTREE,
   CONSTRAINT `funding_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`activity_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for online
