@@ -3,7 +3,7 @@
 2、在STS中Help-->Eclipse Marketplace-->搜索“Gradle IDE Pack”并安装该插件
 3、导出starrysea仓库到STS中
 4、右键starrysea项目-->Gradle(STS)-->Refresh All后开始下载所需要的jar包到本地
-5、修改starrysea仓库中top.starrysea.common.Common类的FILE_ROOT变量,修改为部署的服务器上nginx的文件夹根目录
+5、修改或添加starrysea仓库中application.properties的ss.fileroot变量(变量一定要以“/”结尾),修改为部署的服务器上nginx的文件夹根目录
 6、右键starrysea项目-->Gradle(STS)-->Task Quick Launcher-->输入build,回车即开始构建项目
 7、构建完毕后,可以在starrysea/build/libs文件夹下发现starrysea-x.x.x.jar
 8、将starrysea-x.x.x.jar上传到云服务器,使用“nohup java -jar starrysea-x.x.x.jar > log.txt”命令启动后端服务器(jetty),启动的日志会记录在jar包同级目录的log.txt中
