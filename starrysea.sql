@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 本地
-Source Server Version : 50719
-Source Host           : localhost:3306
+Source Server         : starrysea
+Source Server Version : 50638
+Source Host           : 120.79.24.63:3306
 Source Database       : starrysea
 
 Target Server Type    : MYSQL
-Target Server Version : 50719
+Target Server Version : 50638
 File Encoding         : 65001
 
-Date: 2017-12-13 09:56:34
+Date: 2017-12-21 11:50:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,8 +27,9 @@ CREATE TABLE `activity` (
   `activity_cover` varchar(50) NOT NULL,
   `activity_summary` varchar(50) NOT NULL,
   `activity_endtime` date DEFAULT NULL,
+  `activity_money` decimal(7,2) NOT NULL DEFAULT '0.00',
   PRIMARY KEY (`activity_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=440 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=449 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for activity_image
@@ -41,7 +42,7 @@ CREATE TABLE `activity_image` (
   PRIMARY KEY (`activity_image_id`),
   KEY `activity_id` (`activity_id`) USING BTREE,
   CONSTRAINT `activity_image_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`activity_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for admin
@@ -91,9 +92,9 @@ CREATE TABLE `funding` (
   `funding_money` decimal(7,2) NOT NULL,
   `funding_message` varchar(50) NOT NULL,
   PRIMARY KEY (`funding_id`),
-  KEY `activity_id` (`activity_id`) USING BTREE,
+  KEY `activity_id` (`activity_id`),
   CONSTRAINT `funding_ibfk_1` FOREIGN KEY (`activity_id`) REFERENCES `activity` (`activity_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for online
@@ -151,7 +152,7 @@ CREATE TABLE `work` (
   `work_summary` varchar(50) NOT NULL,
   `work_click` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`work_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for work_image
@@ -164,4 +165,4 @@ CREATE TABLE `work_image` (
   PRIMARY KEY (`work_image_id`),
   KEY `work_id` (`work_id`) USING BTREE,
   CONSTRAINT `work_image_ibfk_1` FOREIGN KEY (`work_id`) REFERENCES `work` (`work_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
